@@ -1,0 +1,13 @@
+{
+  "name": "<%- moduleName %>",
+  "authors": "<%- userName %>",
+  "description": "<%- englishDescription %>",
+  "keywords": [
+    "kingofapp",
+    "module"
+  ],
+  "license": "<%- license %>",
+  "homepage": "<%- homepage %>",
+  "private": true,
+  "dependencies": {}
+}

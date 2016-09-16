@@ -1,0 +1,50 @@
+{
+  "name": "<%- moduleName %>",
+  "identifier": "<%- moduleName %>",
+  "description": {
+    "es-ES": "",
+    "en-US": ""
+  },
+  "documentation": {
+    "es-ES": "",
+    "en-US": ""
+  },
+  "descriptionShort": {
+    "es-ES": "<%- spanishDescription %>",
+    "en-US": "<%- englishDescription %>"
+  },
+  "icon": "room",
+  "type": "A",
+  "version": "0.0.1",
+  "author": "<%- userName %>",
+  "category": <%- categories %>,
+  "price": <%- price %>,
+  "subscription": false,
+  "canContain": false,
+  "platforms": [
+    "android",
+    "ios",
+    "windows"
+  ],
+  "view": "modules/<%= moduleName %>/index.html",
+  "files": [
+    "modules/<%= moduleName %>/controller.js", "modules/<%= moduleName %>/style.html"
+  ],
+  "scope": {},
+  "libs": [],
+  "config": [],
+  "showOn": {
+    "menu": true,
+    "market": true,
+    "dragDrop": true
+  },
+  "images": {
+    "list": "modules/<%= moduleName %>/images/list.png",
+    "screenshots": [
+      "modules/<%= moduleName %>/images/screenshot01.png"
+    ],
+    "popover": "modules/<%= moduleName %>/images/popover.png",
+    "banner": "modules/<%= moduleName %>/images/banner.png",
+    "logo": "modules/<%= moduleName %>/images/logo.png"
+  }
+}

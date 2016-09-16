@@ -1,0 +1,165 @@
+'use strict';
+var yeoman = require('yeoman-generator');
+var chalk = require('chalk');
+var yosay = require('yosay');
+
+module.exports = yeoman.Base.extend({
+  prompting: function () {
+    this.log(yosay(
+      'Welcome to ' + chalk.red('King of App ') + chalk.blue('module Generator') + '!'
+    ));
+
+    return this.prompt([{
+      type: 'input',
+      name: 'moduleName',
+      message: 'Module name',
+      required: true
+    }, {
+      type: 'input',
+      name: 'userName',
+      message: 'Author\'s name'
+    }, {
+      type: 'input',
+      name: 'homepage',
+      message: 'Author\'s homepage'
+    }, {
+      type: 'input',
+      name: 'spanishDescription',
+      message: 'Spanish description'
+    }, {
+      type: 'input',
+      name: 'englishDescription',
+      message: 'English description'
+    }, {
+      type: 'inpt',
+      name: 'license',
+      message: 'License',
+      default: 'MIT'
+    }, {
+      type: 'input',
+      name: 'categories',
+      message: 'Categories (comma to split)'
+    }, {
+      type: 'input',
+      name: 'price',
+      message: 'Price'
+    }]).then(function (answers) {
+      this.log('Thanks! The process will start now...');
+
+      this.homepage = answers.homepage;
+      this.moduleName = fixModuleName(answers.moduleName, '-');
+      this.varModuleName = camelize(answers.moduleName);
+      this.userName = answers.userName;
+      this.spanishDescription = answers.spanishDescription;
+      this.englishDescription = answers.englishDescription;
+      this.license = answers.license;
+      this.categories = fixModuleCategories(answers.categories);
+      this.price = answers.price;
+    }.bind(this));
+  },
+
+  writing: function () {
+    var _self = this;
+
+    var folder = '/' + this.moduleName;
+
+    this.destinationRoot(this.destinationPath() + folder);
+
+    var moduleInput = {
+      moduleName: _self.moduleName,
+      homepage: _self.homepage,
+      varModuleName: _self.varModuleName,
+      userName: _self.userName,
+      spanishDescription: _self.spanishDescription,
+      englishDescription: _self.englishDescription,
+      license: _self.license,
+      categories: _self.categories,
+      price: _self.price
+    };
+
+    this.fs.copyTpl(
+      this.templatePath('index.html'),
+      this.destinationPath('index.html'),
+      moduleInput
+    );
+
+    this.fs.copyTpl(
+      this.templatePath('style.html'),
+      this.destinationPath('style.html'),
+      moduleInput
+    );
+
+    this.fs.copyTpl(
+      this.templatePath('controller.js'),
+      this.destinationPath('controller.js'),
+      moduleInput
+    );
+
+    this.fs.copyTpl(
+      this.templatePath('README.md'),
+      this.destinationPath('README.md'),
+      moduleInput
+    );
+
+    this.fs.copy(
+      this.templatePath('_bowerrc'),
+      this.destinationPath('.bowerrc')
+    );
+
+    this.fs.copyTpl(
+      this.templatePath('config.json'),
+      this.destinationPath('config.json'),
+      moduleInput
+    );
+
+    this.fs.copyTpl(
+      this.templatePath('bower.json'),
+      this.destinationPath('bower.json'),
+      moduleInput
+    );
+
+    this.directory(
+      this.templatePath('images'),
+      this.destinationPath('images')
+    );
+
+    this.directory(
+      this.templatePath('locale'),
+      this.destinationPath('locale')
+    );
+
+    this.directory(
+      this.templatePath('test'),
+      this.destinationPath('test')
+    );
+  }
+});
+
+/** Function that validate the module name
+* @returns {String}
+*/
+function fixModuleName(name, ReplaceSymbol) {
+  name = name.toLowerCase().trim();
+  return name.replace(/ /g, ReplaceSymbol);
+}
+
+/** Function that validate the Categories
+* @returns {String}
+*/
+function fixModuleCategories(list) {
+  list = list.replace(/ /g, '').toLowerCase().trim();
+  var arrayCategories = list.split(',');
+  return JSON.stringify(arrayCategories);
+}
+
+/** Function that converts a string into camel case using javascript regex
+ * @author Christian C. Salvadó
+ * @see http://stackoverflow.com/questions/2970525/converting-any-string-into-camel-case
+ * @param {string} user's input
+ * @returns {string} camelCase
+*/
+function camelize(str) {
+  return str.replace(/(?:^\w|[A-Z]|\b\w)/g, function (letter, index) {
+    return index === 0 ? letter.toLowerCase() : letter.toUpperCase();
+  }).replace(/\s+/g, '');
+}

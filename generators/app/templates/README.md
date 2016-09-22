@@ -1,23 +1,16 @@
-# <%= moduleName %>
+# <%- moduleName %> Module
 ===================================
 
+![<%- moduleName %>-popover](images/popover.png)
 
-![<%- moduleName %>-popover](<%- moduleName %>/images/popover.png)
-
-
+### Description
 
 <%- englishDescription %>
 
----------------
 
-
-<%- spanishDescription %>
-
----------------
-
-
-![<%- moduleName %>-screenshot01](<%- moduleName %>/images/screenshot01.png)
-
+### Images
+- [Logo](images/logo.png)
+- [Screenshot](images/screenshot01.png)
 
 
 ### Details:

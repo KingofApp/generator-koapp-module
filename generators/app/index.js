@@ -77,63 +77,64 @@ module.exports = yeoman.Base.extend({
       price: _self.price
     };
 
-    this.fs.copyTpl(
-      this.templatePath('index.html'),
-      this.destinationPath('index.html'),
-      moduleInput
-    );
+    var filesToCopy = {
+      templated: [
+        'index.html',
+        'style.html',
+        'controller.js',
+        'README.md',
+        'config.json',
+        'bower.json',
+        'package.json',
+        'locale/en_US.json',
+        'locale/es_ES.json',
+        'tests/e2e/spec.js'
+      ], direct: [
+        'Gulpfile.js',
+        'tests/protractor.conf.js'
+      ]
+    };
 
-    this.fs.copyTpl(
-      this.templatePath('style.html'),
-      this.destinationPath('style.html'),
-      moduleInput
-    );
-
-    this.fs.copyTpl(
-      this.templatePath('controller.js'),
-      this.destinationPath('controller.js'),
-      moduleInput
-    );
-
-    this.fs.copyTpl(
-      this.templatePath('README.md'),
-      this.destinationPath('README.md'),
-      moduleInput
-    );
+    directCopy(_self, moduleInput, filesToCopy.templated, true);
+    directCopy(_self, moduleInput, filesToCopy.direct, false);
 
     this.fs.copy(
       this.templatePath('_bowerrc'),
       this.destinationPath('.bowerrc')
     );
 
-    this.fs.copyTpl(
-      this.templatePath('config.json'),
-      this.destinationPath('config.json'),
-      moduleInput
-    );
-
-    this.fs.copyTpl(
-      this.templatePath('bower.json'),
-      this.destinationPath('bower.json'),
-      moduleInput
-    );
-
     this.directory(
       this.templatePath('images'),
       this.destinationPath('images')
     );
-
-    this.directory(
-      this.templatePath('locale'),
-      this.destinationPath('locale')
-    );
-
-    this.directory(
-      this.templatePath('test'),
-      this.destinationPath('test')
-    );
   }
 });
+
+/** Function direct copy files
+* @param {object} this
+* @param {object} input
+* @param {array} relative location - files to copy
+* @param {boolean} [false] internally it uses copy or copyTpl
+*/
+function directCopy(self, input, files, templated) {
+  templated = templated || false;
+
+  for (var i = files.length; i--;) {
+    if (templated) {
+      self.fs.copyTpl(
+        self.templatePath(files[i]),
+        self.destinationPath(files[i]),
+        input
+      );
+    } else {
+      self.fs.copy(
+        self.templatePath(files[i]),
+        self.destinationPath(files[i]),
+        input
+      );
+    }
+  }
+}
 
 /** Function that validate the module name
 * @returns {String}

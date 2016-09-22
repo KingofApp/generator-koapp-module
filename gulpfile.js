@@ -9,7 +9,7 @@ var nsp = require('gulp-nsp');
 var plumber = require('gulp-plumber');
 
 gulp.task('static', function () {
-  return gulp.src(['**/*.js', '!**/**/templates/*.js'])
+  return gulp.src(['**/*.js', '!**/**/templates/**/*.js'])
     .pipe(excludeGitignore())
     .pipe(eslint())
     .pipe(eslint.format())
@@ -21,7 +21,7 @@ gulp.task('nsp', function (cb) {
 });
 
 gulp.task('pre-test', function () {
-  return gulp.src(['generators/**/*.js', '!generators/app/templates/*.js'])
+  return gulp.src(['generators/**/*.js', '!generators/app/templates/**/*.js'])
     .pipe(excludeGitignore())
     .pipe(istanbul({
       includeUntested: true

@@ -114,9 +114,36 @@ describe('generator-koa-module:app', function () {
     ]);
   });
 
-  it('creates file test/module.js', function () {
+  it('creates file package.json', function () {
     assert.file([
-      'test/module.js'
+      'package.json'
+    ]);
+  });
+
+  it('checks content package.json', function () {
+    assert.jsonFileContent('package.json', {
+      name: anwsersExpected.moduleName,
+      description: anwsersExpected.englishDescription,
+      author: anwsersExpected.userName,
+      license: anwsersExpected.license
+    });
+  });
+
+  it('creates file Gulpfile.js', function () {
+    assert.file([
+      'Gulpfile.js'
+    ]);
+  });
+
+  it('creates file tests/protractor.conf.js', function () {
+    assert.file([
+      'tests/protractor.conf.js'
+    ]);
+  });
+
+  it('creates file tests/e2e/spec.js', function () {
+    assert.file([
+      'tests/e2e/spec.js'
     ]);
   });
 

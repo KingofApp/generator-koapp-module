@@ -1,4 +1,4 @@
-describe('openweathermap controller', function(){
+describe('<%- moduleName %> controller', function(){
   beforeEach(function() {
     browser.driver.manage().window().setSize(400, 666);
     browser.get('http://localhost:8080/#/menu-abcd/<%- moduleName %>');

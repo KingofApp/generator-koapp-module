@@ -6,7 +6,9 @@ var fs = require('fs'),
   spawn = require('child_process').spawn,
   gutil = require('gulp-util'),
   protractor = require('gulp-protractor').protractor,
-  notify = require('gulp-notify');
+  notify = require('gulp-notify'),
+  gulpif = require('gulp-if'),
+  desktopNotifications = require('../../../../config').features.desktopNotifications;
 
 var wdmInstalled = false;
 
@@ -71,13 +73,13 @@ gulp.task('protractor-test', ['protractor-launch'], function(done) {
 gulp.task('e2e', ['protractor-test'], function() {
   if (wdmInstalled) {
     gulp.src('README.md')
-      .pipe(notify({
+      .pipe(gulpif(desktopNotifications, notify({
         title: 'King of App - Module Generator',
         message: 'E2E Test finished!',
         icon: 'https://avatars1.githubusercontent.com/u/7260905?v=3&s=200',
         sound: true
       }
-    ));
+    )));
   } else {
     gutil.log(gutil.colors.yellow('Remember! You have to install webdriver-manager globally.'));
     gutil.log(gutil.colors.red('- Terminal: npm install webdriver-manager -g'));

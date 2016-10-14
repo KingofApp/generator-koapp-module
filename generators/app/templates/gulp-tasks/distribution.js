@@ -9,7 +9,9 @@ var gulp = require('gulp'),
     strip = require('gulp-strip-comments'),
     beautify = require('gulp-beautify'),
     pkg = require('../package.json'),
-    del = require('del');
+    del = require('del'),
+    gulpif = require('gulp-if'),
+    desktopNotifications = require('../../../../config').features.desktopNotifications;
 
 
 gulp.task('clone-dist', function() {
@@ -47,15 +49,15 @@ gulp.task('clean-tmp', ['move-zip'], function(done) {
 gulp.task('size-zip', ['clean-tmp'], function() {
     gulp.src('dist/' + pkg.name + '_' + pkg.version + '.zip')
     .pipe(fileSize());
-})
+});
 
 gulp.task('dist-zip', ['size-zip'], function() {
   return gulp.src('Gulpfile.js')
-    .pipe(notify({
+    .pipe(gulpif(desktopNotifications, notify({
       title: 'King of App - Module Generator',
       message: pkg.name + ' v' + pkg.version + ' is ready for distribution!',
       icon: 'https://avatars1.githubusercontent.com/u/7260905?v=3&s=200',
       sound: true
     }
-  ));
+  )));
 });

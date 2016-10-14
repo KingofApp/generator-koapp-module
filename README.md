@@ -13,11 +13,34 @@ npm install -g yo
 npm install -g generator-koapp-module
 ```
 
-Then generate your new project:
+Generate your new module:
 
 ```bash
 yo koapp-module
 ```
+
+Then start your new module:
+
+```bash
+cd {Project-name} && gulp
+```
+
+### Automated Tasks (Gulp)
+
+**Main Tasks**
+
+- `gulp` It runs `watch-config`, `watch-bower`, `watch-documentation`
+- `gulp distribution` It runs `dist-zip`
+
+**All Tasks**
+
+- `gulp lint` Linter for your code.
+- `gulp e2e` It runs integration test with Protractor.
+- `gulp jsdoc` It creates JsDoc documentation.
+- `gulp dist-zip` It generates a compression file ready to upload
+- `gulp watch-documentation` It is monitoring for changes in documentation, also it will update config.json
+- `gulp watch-bower` It's monitoring for changes in bower.json.
+- `gulp watch-config` It's monitoring for changes in config.json,  also it will update a../../app/core/structure.json
 
 ### Contribution
 

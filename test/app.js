@@ -135,6 +135,36 @@ describe('generator-koa-module:app', function () {
     ]);
   });
 
+  it('creates file gulp-tasks/distribution.js', function () {
+    assert.file([
+      'gulp-tasks/distribution.js'
+    ]);
+  });
+
+  it('creates file gulp-tasks/documentation.js', function () {
+    assert.file([
+      'gulp-tasks/documentation.js'
+    ]);
+  });
+
+  it('creates file gulp-tasks/lint.js', function () {
+    assert.file([
+      'gulp-tasks/lint.js'
+    ]);
+  });
+
+  it('creates file gulp-tasks/testing.js', function () {
+    assert.file([
+      'gulp-tasks/testing.js'
+    ]);
+  });
+
+  it('creates file gulp-tasks/integration.js', function () {
+    assert.file([
+      'gulp-tasks/integration.js'
+    ]);
+  });
+
   it('creates file tests/protractor.conf.js', function () {
     assert.file([
       'tests/protractor.conf.js'
@@ -186,6 +216,30 @@ describe('generator-koa-module:app', function () {
   it('creates file images/screenshot01.png', function () {
     assert.file([
       'images/screenshot01.png'
+    ]);
+  });
+
+  it('creates file docs/jsdoc.json', function () {
+    assert.file([
+      'docs/jsdoc.json'
+    ]);
+  });
+
+  it('creates file docs/jsdoc.md', function () {
+    assert.file([
+      'docs/jsdoc.md'
+    ]);
+  });
+
+  it('creates file docs/en_US.md', function () {
+    assert.file([
+      'docs/en_US.md'
+    ]);
+  });
+
+  it('creates file docs/es_ES.md', function () {
+    assert.file([
+      'docs/es_ES.md'
     ]);
   });
 });

@@ -1,0 +1,5 @@
+# Documentación
+
+### <%= varModuleName %>
+
+<%- spanishDescription %>

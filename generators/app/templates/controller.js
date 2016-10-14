@@ -11,7 +11,7 @@
     // Register upper level modules
     structureService.registerModule($location, $scope, '<%= varModuleName %>');
     // --- Start <%= varModuleName %>Controller content ---
-    console.info("Hi! from <%= varModuleName %>Controller");
+    console.info('Hi! from <%= varModuleName %>Controller');
     // --- End <%= varModuleName %>Controller content ---
   }
 }());

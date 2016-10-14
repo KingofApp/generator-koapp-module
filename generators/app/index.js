@@ -60,22 +60,27 @@ module.exports = yeoman.Base.extend({
 
   writing: function () {
     var _self = this;
+    var moduleInput = {};
 
     var folder = '/' + this.moduleName;
 
     this.destinationRoot(this.destinationPath() + folder);
 
-    var moduleInput = {
-      moduleName: _self.moduleName,
-      homepage: _self.homepage,
-      varModuleName: _self.varModuleName,
-      userName: _self.userName,
-      spanishDescription: _self.spanishDescription,
-      englishDescription: _self.englishDescription,
-      license: _self.license,
-      categories: _self.categories,
-      price: _self.price
-    };
+    var keys = [
+      'moduleName',
+      'homepage',
+      'varModuleName',
+      'userName',
+      'spanishDescription',
+      'englishDescription',
+      'license',
+      'categories',
+      'price'
+    ];
+
+    keys.forEach(function (key) {
+      moduleInput[key] = _self[key];
+    });
 
     var filesToCopy = {
       templated: [
@@ -88,10 +93,19 @@ module.exports = yeoman.Base.extend({
         'package.json',
         'locale/en_US.json',
         'locale/es_ES.json',
-        'tests/e2e/spec.js'
+        'tests/e2e/spec.js',
+        'gulp-tasks/integration.js',
+        'docs/jsdoc.md',
+        'docs/en_US.md',
+        'docs/es_ES.md'
       ], direct: [
         'Gulpfile.js',
-        'tests/protractor.conf.js'
+        'tests/protractor.conf.js',
+        'gulp-tasks/distribution.js',
+        'gulp-tasks/documentation.js',
+        'gulp-tasks/lint.js',
+        'gulp-tasks/testing.js',
+        'docs/jsdoc.json'
       ]
     };
 
@@ -107,6 +121,10 @@ module.exports = yeoman.Base.extend({
       this.templatePath('images'),
       this.destinationPath('images')
     );
+  },
+
+  install: function () {
+    this.installDependencies({bower: false});
   }
 });
 

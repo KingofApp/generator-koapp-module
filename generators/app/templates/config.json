@@ -2,8 +2,8 @@
   "name": "<%- moduleName %>",
   "identifier": "<%- moduleName %>",
   "description": {
-    "es-ES": "",
-    "en-US": ""
+    "es-ES": "<%- spanishDescription %>",
+    "en-US": "<%- englishDescription %>"
   },
   "documentation": {
     "es-ES": "",
@@ -30,7 +30,7 @@
   "files": [
     "modules/<%= moduleName %>/controller.js", "modules/<%= moduleName %>/style.html"
   ],
-  "scope": {},
+  "scope": {"demoKey": "demo text"},
   "libs": [],
   "config": [],
   "showOn": {

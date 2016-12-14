@@ -6,8 +6,8 @@
     "en-US": "<%- englishDescription %>"
   },
   "documentation": {
-    "es-ES": "",
-    "en-US": ""
+    "es-ES": "docs/es_ES.md",
+    "en-US": "docs/en_US.md"
   },
   "descriptionShort": {
     "es-ES": "<%- spanishDescription %>",

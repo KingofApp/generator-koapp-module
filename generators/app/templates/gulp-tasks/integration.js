@@ -8,7 +8,7 @@ var gulp = require('gulp'),
 require('gulp-watch');
 
 var moduleRoute = {
-    'path': '/menu-abcd/<%- moduleName %>',
+    'path': '/menu-abcd/<%- pluginName %>',
     'bgImage': '',
     'bgColor': ''
 };
@@ -26,7 +26,7 @@ gulp.task('read-config', function() {
   gulp.src('./config.json')
     .pipe(jsonTransform(function(moduleConfig) {
         var keys = ['name', 'identifier', 'type', 'icon', 'showOn', 'view', 'files', 'scope', 'config', 'libs'];
-        
+
         keys.forEach(function(key) {
           moduleSetup[key] = moduleConfig[key];
         });
@@ -36,7 +36,7 @@ gulp.task('read-config', function() {
 });
 
 gulp.task('install', ['read-config'], function() {
-  
+
   function RouteValidation(currentRoutes, newRoute) {
     var wasAdded = false;
     for (var i = 0; i < currentRoutes.length; i++) {
@@ -52,7 +52,7 @@ gulp.task('install', ['read-config'], function() {
     .pipe(jsonTransform(function(data) {
         var allRoutes = data.modules['/menu-abcd'].scope.menuItems;
 
-        data.modules['/menu-abcd/<%- moduleName %>'] = moduleSetup;
+        data.modules['/menu-abcd/<%- pluginName %>'] = moduleSetup;
         data.modules['/menu-abcd'].scope.menuItems = RouteValidation(allRoutes, moduleRoute);
         return data;
     }))

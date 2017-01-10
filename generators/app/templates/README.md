@@ -1,7 +1,7 @@
-# <%- moduleName %> Module
+# <%- pluginName %> Module
 ===================================
 
-![<%- moduleName %>-popover](images/popover.png)
+![<%- pluginName %>-popover](images/popover.png)
 
 ### Description
 

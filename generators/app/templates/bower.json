@@ -1,5 +1,5 @@
 {
-  "name": "<%- moduleName %>",
+  "name": "<%- pluginName %>",
   "authors": "<%- userName %>",
   "description": "<%- englishDescription %>",
   "keywords": [

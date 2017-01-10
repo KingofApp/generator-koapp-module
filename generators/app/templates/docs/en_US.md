@@ -1,5 +1,5 @@
 # Documentation
 
-### <%= varModuleName %>
+### <%= varPluginName %>
 
 <%- englishDescription %>

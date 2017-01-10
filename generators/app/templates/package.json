@@ -1,5 +1,5 @@
 {
-  "name": "<%- moduleName %>",
+  "name": "<%- pluginName %>",
   "version": "0.0.1",
   "description": "<%- englishDescription %>",
   "directories": {

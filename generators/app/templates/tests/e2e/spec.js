@@ -1,11 +1,11 @@
-describe('<%- moduleName %> controller', function() {
+describe('<%- pluginName %> controller', function() {
   beforeEach(function() {
     browser.driver.manage().window().setSize(400, 666);
-    browser.get('http://localhost:9001/#/menu-abcd/<%- moduleName %>');
+    browser.get('http://localhost:9001/#/menu-abcd/<%- pluginName %>');
   });
 
   it('should load module', function() {
-    expect(element(by.css('.<%= varModuleName %>'))).toBeDefined();
+    expect(element(by.css('.<%= varPluginName %>'))).toBeDefined();
   });
 
   it('should load the greeting text', function() {

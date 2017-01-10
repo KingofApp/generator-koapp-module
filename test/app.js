@@ -7,7 +7,7 @@ describe('generator-koa-module:app', function () {
   this.timeout(15000);
 
   var anwsers = {
-    moduleName: '   new module',
+    pluginName: '   new module',
     userName: 'Yo Mismo',
     spanishDescription: 'Mi nuevo Módulo',
     englishDescription: 'My new Module',
@@ -18,7 +18,7 @@ describe('generator-koa-module:app', function () {
   };
 
   var anwsersExpected = {
-    moduleName: 'new-module',
+    pluginName: 'new-module',
     varModuleName: 'newModule',
     homepage: 'http://kingofapp.com',
     userName: 'Yo Mismo',
@@ -49,7 +49,7 @@ describe('generator-koa-module:app', function () {
 
   it('checks content bower.json', function () {
     assert.jsonFileContent('bower.json', {
-      name: anwsersExpected.moduleName,
+      name: anwsersExpected.pluginName,
       description: anwsersExpected.englishDescription,
       authors: anwsersExpected.userName,
       license: anwsersExpected.license,
@@ -65,8 +65,8 @@ describe('generator-koa-module:app', function () {
 
   it('checks content config.json', function () {
     assert.jsonFileContent('config.json', {
-      name: anwsersExpected.moduleName,
-      identifier: anwsersExpected.moduleName,
+      name: anwsersExpected.pluginName,
+      identifier: anwsersExpected.pluginName,
       descriptionShort: {
         'es-ES': anwsersExpected.spanishDescription,
         'en-US': anwsersExpected.englishDescription
@@ -74,18 +74,18 @@ describe('generator-koa-module:app', function () {
       author: anwsersExpected.userName,
       category: anwsersExpected.categories,
       price: anwsersExpected.price,
-      view: 'modules/' + anwsersExpected.moduleName + '/index.html',
+      view: 'modules/' + anwsersExpected.pluginName + '/index.html',
       files: [
-        'modules/' + anwsersExpected.moduleName + '/controller.js', 'modules/' + anwsersExpected.moduleName + '/style.html'
+        'modules/' + anwsersExpected.pluginName + '/controller.js', 'modules/' + anwsersExpected.pluginName + '/style.html'
       ],
       images: {
-        list: 'modules/' + anwsersExpected.moduleName + '/images/list.png',
+        list: 'modules/' + anwsersExpected.pluginName + '/images/list.png',
         screenshots: [
-          'modules/' + anwsersExpected.moduleName + '/images/screenshot01.png'
+          'modules/' + anwsersExpected.pluginName + '/images/screenshot01.png'
         ],
-        popover: 'modules/' + anwsersExpected.moduleName + '/images/popover.png',
-        banner: 'modules/' + anwsersExpected.moduleName + '/images/banner.png',
-        logo: 'modules/' + anwsersExpected.moduleName + '/images/logo.png'
+        popover: 'modules/' + anwsersExpected.pluginName + '/images/popover.png',
+        banner: 'modules/' + anwsersExpected.pluginName + '/images/banner.png',
+        logo: 'modules/' + anwsersExpected.pluginName + '/images/logo.png'
       }
     });
   });
@@ -122,7 +122,7 @@ describe('generator-koa-module:app', function () {
 
   it('checks content package.json', function () {
     assert.jsonFileContent('package.json', {
-      name: anwsersExpected.moduleName,
+      name: anwsersExpected.pluginName,
       description: anwsersExpected.englishDescription,
       author: anwsersExpected.userName,
       license: anwsersExpected.license

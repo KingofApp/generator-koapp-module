@@ -1,4 +1,4 @@
-# <%= varModuleName %>
+# <%= varPluginName %>
 
 <%- englishDescription %>
 

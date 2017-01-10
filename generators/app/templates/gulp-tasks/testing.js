@@ -8,7 +8,13 @@ var fs = require('fs'),
   protractor = require('gulp-protractor').protractor,
   notify = require('gulp-notify'),
   gulpif = require('gulp-if'),
+  desktopNotifications = false;
+
+try {
   desktopNotifications = require('../../../../config').features.desktopNotifications;
+}
+catch(e){}
+
 
 var wdmInstalled = false;
 
@@ -42,7 +48,7 @@ gulp.task('protractor-launch', ['protractor-update'], function() {
     }
 
     var out = fs.openSync('./logs/webdriver_out.log', 'w'),
-        err = fs.openSync('./logs/webdriver_err.log', 'w');  
+        err = fs.openSync('./logs/webdriver_err.log', 'w');
     spawn('webdriver-manager', ['start'], {
       stdio: [ 'ignore', out, err], // piping stdout and stderr to out.log
       detached: true

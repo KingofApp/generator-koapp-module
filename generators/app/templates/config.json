@@ -1,6 +1,6 @@
 {
-  "name": "<%- moduleName %>",
-  "identifier": "<%- moduleName %>",
+  "name": "<%- pluginName %>",
+  "identifier": "<%- pluginName %>",
   "description": {
     "es-ES": "<%- spanishDescription %>",
     "en-US": "<%- englishDescription %>"
@@ -26,9 +26,9 @@
     "ios",
     "windows"
   ],
-  "view": "modules/<%= moduleName %>/index.html",
+  "view": "modules/<%= pluginName %>/index.html",
   "files": [
-    "modules/<%= moduleName %>/controller.js", "modules/<%= moduleName %>/style.html"
+    "modules/<%= pluginName %>/controller.js", "modules/<%= pluginName %>/style.html"
   ],
   "scope": {"demoKey": "demo text"},
   "libs": [],
@@ -39,12 +39,12 @@
     "dragDrop": true
   },
   "images": {
-    "list": "modules/<%= moduleName %>/images/list.png",
+    "list": "modules/<%= pluginName %>/images/list.png",
     "screenshots": [
-      "modules/<%= moduleName %>/images/screenshot01.png"
+      "modules/<%= pluginName %>/images/screenshot01.png"
     ],
-    "popover": "modules/<%= moduleName %>/images/popover.png",
-    "banner": "modules/<%= moduleName %>/images/banner.png",
-    "logo": "modules/<%= moduleName %>/images/logo.png"
+    "popover": "modules/<%= pluginName %>/images/popover.png",
+    "banner": "modules/<%= pluginName %>/images/banner.png",
+    "logo": "modules/<%= pluginName %>/images/logo.png"
   }
 }

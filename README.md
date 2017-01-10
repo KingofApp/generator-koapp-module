@@ -10,14 +10,25 @@ First, install [Yeoman](http://yeoman.io) and generator-koapp-module using [npm]
 
 ```bash
 npm install -g yo
+npm install -g gulp
 npm install -g generator-koapp-module
 ```
 
 Generate your new module:
 
 ```bash
-yo koapp-module
+yo koapp-module -n moduleName
 ```
+
+Optionally, you can include the following flags:
+
+* `-u authorName`
+* `-w authorHomepage`
+* `-s spanishDescription`
+* `-e englishDescription`
+* `-p price`
+* `-l license`
+* `-c categories` separated by comma
 
 Then start your new module:
 
@@ -76,4 +87,3 @@ npm test
 ### License
 
 MIT © [King of App](https://github.com/KingofApp)
-

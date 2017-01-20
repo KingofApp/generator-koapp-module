@@ -6,8 +6,8 @@
     "en-US": "<%- englishDescription %>"
   },
   "documentation": {
-    "es-ES": "docs/es_ES.md",
-    "en-US": "docs/en_US.md"
+    "es-ES": "modules/<%= pluginName %>/docs/es_ES.md",
+    "en-US": "modules/<%= pluginName %>/docs/en_US.md"
   },
   "descriptionShort": {
     "es-ES": "<%- spanishDescription %>",

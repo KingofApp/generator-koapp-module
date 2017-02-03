@@ -1,13 +1,21 @@
 {
   "name": "generator-koapp-module",
-  "version": "1.1.5",
+  "version": "1.1.6",
   "description": "Scaffold out a King of App Module",
   "homepage": "https://github.com/KingofApp/generator-koapp-module",
-  "author": {
-    "name": "Ulises Gascón",
-    "email": "ulises@kingofapp.es",
-    "url": "https://github.com/UlisesGascon"
-  },
+  "author": "King of App",
+  "contributors": [
+    {
+      "name": "Ulises Gascón",
+      "email": "ulises@kingofapp.es",
+      "url": "https://github.com/UlisesGascon"
+    },
+    {
+      "name": "Fran Quesada",
+      "email": "paco@kingofapp.es",
+      "url": "https://github.com/totegsito"
+    }
+],
   "files": [
     "generators"
   ],

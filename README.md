@@ -17,7 +17,7 @@ npm install -g generator-koapp-module
 Generate your new module:
 
 ```bash
-yo koapp-module -n moduleName
+yo koapp-module moduleName
 ```
 
 Optionally, you can include the following flags:

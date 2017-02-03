@@ -1,5 +1,5 @@
 {
-  "name": "<%- pluginName %>",
+  "name": "koapp-module-<%- pluginName %>",
   "version": "0.0.1",
   "description": "<%- englishDescription %>",
   "directories": {

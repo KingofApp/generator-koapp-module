@@ -4,10 +4,9 @@ var assert = require('yeoman-assert');
 var helpers = require('yeoman-test');
 
 describe('generator-koa-module:app', function () {
-  this.timeout(15000);
-
-  var anwsers = {
-    pluginName: '   new module',
+  this.timeout(20000);
+  var moduleName = '   new module';
+  var answers = {
     userName: 'Yo Mismo',
     spanishDescription: 'Mi nuevo Módulo',
     englishDescription: 'My new Module',
@@ -17,7 +16,7 @@ describe('generator-koa-module:app', function () {
     price: '0'
   };
 
-  var anwsersExpected = {
+  var answersExpected = {
     pluginName: 'new-module',
     varModuleName: 'newModule',
     homepage: 'http://kingofapp.com',
@@ -29,217 +28,94 @@ describe('generator-koa-module:app', function () {
     price: 0
   };
 
-  before(function () {
+  before(function (done) {
     return helpers.run(path.join(__dirname, '../generators/app'))
-      .withPrompts(anwsers)
-      .toPromise();
+      .withArguments([moduleName])
+      .withOptions(answers)
+      .on('end', done);
   });
 
-  it('creates file .bowerrc', function () {
-    assert.file([
-      '.bowerrc'
-    ]);
-  });
-
-  it('creates file bower.json', function () {
-    assert.file([
-      'bower.json'
-    ]);
+  [
+    'config.json',
+    'bower.json',
+    '.bowerrc',
+    'controller.js',
+    'index.html',
+    'README.md',
+    'style.html',
+    'package.json',
+    'Gulpfile.js',
+    'gulp-tasks/distribution.js',
+    'gulp-tasks/documentation.js',
+    'gulp-tasks/lint.js',
+    'gulp-tasks/testing.js',
+    'gulp-tasks/integration.js',
+    'tests/protractor.conf.js',
+    'tests/e2e/spec.js',
+    'locale/en_US.json',
+    'locale/es_ES.json',
+    'images/banner.png',
+    'images/list.png',
+    'images/logo.png',
+    'images/popover.png',
+    'images/screenshot01.png',
+    'docs/jsdoc.json',
+    'docs/jsdoc.md',
+    'docs/en_US.md',
+    'docs/es_ES.md'
+  ].forEach(function(key) {
+    it('creates file ' + key, function () {
+      assert.file([
+        key
+      ]);
+    });
   });
 
   it('checks content bower.json', function () {
     assert.jsonFileContent('bower.json', {
-      name: anwsersExpected.pluginName,
-      description: anwsersExpected.englishDescription,
-      authors: anwsersExpected.userName,
-      license: anwsersExpected.license,
-      homepage: anwsersExpected.homepage
+      name: answersExpected.pluginName,
+      description: answersExpected.englishDescription,
+      authors: answersExpected.userName,
+      license: answersExpected.license,
+      homepage: answersExpected.homepage
     });
-  });
-
-  it('creates file config.json', function () {
-    assert.file([
-      'config.json'
-    ]);
-  });
-
-  it('checks content config.json', function () {
-    assert.jsonFileContent('config.json', {
-      name: anwsersExpected.pluginName,
-      identifier: anwsersExpected.pluginName,
-      descriptionShort: {
-        'es-ES': anwsersExpected.spanishDescription,
-        'en-US': anwsersExpected.englishDescription
-      },
-      author: anwsersExpected.userName,
-      category: anwsersExpected.categories,
-      price: anwsersExpected.price,
-      view: 'modules/' + anwsersExpected.pluginName + '/index.html',
-      files: [
-        'modules/' + anwsersExpected.pluginName + '/controller.js', 'modules/' + anwsersExpected.pluginName + '/style.html'
-      ],
-      images: {
-        list: 'modules/' + anwsersExpected.pluginName + '/images/list.png',
-        screenshots: [
-          'modules/' + anwsersExpected.pluginName + '/images/screenshot01.png'
-        ],
-        popover: 'modules/' + anwsersExpected.pluginName + '/images/popover.png',
-        banner: 'modules/' + anwsersExpected.pluginName + '/images/banner.png',
-        logo: 'modules/' + anwsersExpected.pluginName + '/images/logo.png'
-      }
-    });
-  });
-
-  it('creates file controller.js', function () {
-    assert.file([
-      'controller.js'
-    ]);
-  });
-
-  it('creates file index.html', function () {
-    assert.file([
-      'index.html'
-    ]);
-  });
-
-  it('creates file README.md', function () {
-    assert.file([
-      'README.md'
-    ]);
-  });
-
-  it('creates file style.html', function () {
-    assert.file([
-      'style.html'
-    ]);
-  });
-
-  it('creates file package.json', function () {
-    assert.file([
-      'package.json'
-    ]);
   });
 
   it('checks content package.json', function () {
     assert.jsonFileContent('package.json', {
-      name: anwsersExpected.pluginName,
-      description: anwsersExpected.englishDescription,
-      author: anwsersExpected.userName,
-      license: anwsersExpected.license
+      name: 'koapp-module-' + answersExpected.pluginName,
+      description: answersExpected.englishDescription,
+      author: answersExpected.userName,
+      license: answersExpected.license
     });
   });
 
-  it('creates file Gulpfile.js', function () {
-    assert.file([
-      'Gulpfile.js'
-    ]);
+
+  it('checks content config.json', function () {
+    assert.jsonFileContent('config.json', {
+      name: answersExpected.pluginName,
+      identifier: answersExpected.pluginName,
+      descriptionShort: {
+        'es-ES': answersExpected.spanishDescription,
+        'en-US': answersExpected.englishDescription
+      },
+      author: answersExpected.userName,
+      category: answersExpected.categories,
+      price: answersExpected.price,
+      view: 'modules/' + answersExpected.pluginName + '/index.html',
+      files: [
+        'modules/' + answersExpected.pluginName + '/controller.js', 'modules/' + answersExpected.pluginName + '/style.html'
+      ],
+      images: {
+        list: 'modules/' + answersExpected.pluginName + '/images/list.png',
+        screenshots: [
+          'modules/' + answersExpected.pluginName + '/images/screenshot01.png'
+        ],
+        popover: 'modules/' + answersExpected.pluginName + '/images/popover.png',
+        banner: 'modules/' + answersExpected.pluginName + '/images/banner.png',
+        logo: 'modules/' + answersExpected.pluginName + '/images/logo.png'
+      }
+    });
   });
 
-  it('creates file gulp-tasks/distribution.js', function () {
-    assert.file([
-      'gulp-tasks/distribution.js'
-    ]);
-  });
-
-  it('creates file gulp-tasks/documentation.js', function () {
-    assert.file([
-      'gulp-tasks/documentation.js'
-    ]);
-  });
-
-  it('creates file gulp-tasks/lint.js', function () {
-    assert.file([
-      'gulp-tasks/lint.js'
-    ]);
-  });
-
-  it('creates file gulp-tasks/testing.js', function () {
-    assert.file([
-      'gulp-tasks/testing.js'
-    ]);
-  });
-
-  it('creates file gulp-tasks/integration.js', function () {
-    assert.file([
-      'gulp-tasks/integration.js'
-    ]);
-  });
-
-  it('creates file tests/protractor.conf.js', function () {
-    assert.file([
-      'tests/protractor.conf.js'
-    ]);
-  });
-
-  it('creates file tests/e2e/spec.js', function () {
-    assert.file([
-      'tests/e2e/spec.js'
-    ]);
-  });
-
-  it('creates file locale/en_US.json', function () {
-    assert.file([
-      'locale/en_US.json'
-    ]);
-  });
-
-  it('creates file locale/es_ES.json', function () {
-    assert.file([
-      'locale/es_ES.json'
-    ]);
-  });
-
-  it('creates file images/banner.png', function () {
-    assert.file([
-      'images/banner.png'
-    ]);
-  });
-
-  it('creates file images/list.png', function () {
-    assert.file([
-      'images/list.png'
-    ]);
-  });
-
-  it('creates file images/logo.png', function () {
-    assert.file([
-      'images/logo.png'
-    ]);
-  });
-
-  it('creates file images/popover.png', function () {
-    assert.file([
-      'images/popover.png'
-    ]);
-  });
-
-  it('creates file images/screenshot01.png', function () {
-    assert.file([
-      'images/screenshot01.png'
-    ]);
-  });
-
-  it('creates file docs/jsdoc.json', function () {
-    assert.file([
-      'docs/jsdoc.json'
-    ]);
-  });
-
-  it('creates file docs/jsdoc.md', function () {
-    assert.file([
-      'docs/jsdoc.md'
-    ]);
-  });
-
-  it('creates file docs/en_US.md', function () {
-    assert.file([
-      'docs/en_US.md'
-    ]);
-  });
-
-  it('creates file docs/es_ES.md', function () {
-    assert.file([
-      'docs/es_ES.md'
-    ]);
-  });
 });

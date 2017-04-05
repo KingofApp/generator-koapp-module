@@ -1,30 +1,32 @@
 'use strict';
-var yeoman  = require('yeoman-generator');
-var chalk   = require('chalk');
-var yosay   = require('yosay');
-var tools   = require('koapp');
+var yeoman = require('yeoman-generator');
+var tools = require('koapp');
 
 module.exports = yeoman.Base.extend({
 
-  init : function() {
+  init: function () {
     var self = this;
 
-    this.argument('pluginName',       {type: String, desc: 'Module name',         alias: 'n', required: true});
-    this.option('homepage',           {type: String, desc: 'Author\'s homepage',  alias: 'w'});
-    this.option('userName',           {type: String, desc: 'Author\'s name',      alias: 'u'});
+    this.argument('pluginName', {type: String, desc: 'Module name', alias: 'n', required: true});
+    this.option('homepage', {type: String, desc: 'Author\'s homepage', alias: 'w'});
+    this.option('userName', {type: String, desc: 'Author\'s name', alias: 'u'});
     this.option('spanishDescription', {type: String, desc: 'Spanish description', alias: 's'});
     this.option('englishDescription', {type: String, desc: 'English description', alias: 'e'});
-    this.option('price',              {type: Number, desc: 'Price',               alias: 'p', default: 0});
-    this.option('license',            {type: String, desc: 'License',             alias: 'l', default: 'MIT'});
-    this.option('categories',         {type: tools.parseCategories, desc: 'Categories (comma to split)', alias: 'c'});
+    this.option('price', {type: Number, desc: 'Price', alias: 'p', default: 0});
+    this.option('license', {type: String, desc: 'License', alias: 'l', default: 'MIT'});
+    this.option('categories', {type: parseCategories, desc: 'Categories (comma to split)', alias: 'c'});
 
-    ['homepage', 'userName', 'spanishDescription', 'englishDescription', 'license', 'price'].forEach(function(id) {
+    ['homepage', 'userName', 'spanishDescription', 'englishDescription', 'license', 'price'].forEach(function (id) {
       self[id] = self.options[id];
     });
     var pluginName = this.arguments[0].toLowerCase();
-    this.varPluginName  = tools.camelize(pluginName);
-    this.pluginName     = tools.fixPluginName(pluginName, '-');
-    this.categories     = tools.fixPluginCategories(this.options.categories || 'others');
+    this.varPluginName = tools.camelize(pluginName);
+    this.pluginName = tools.fixPluginName(pluginName, '-');
+    this.categories = tools.fixPluginCategories(this.options.categories || 'others');
+
+    function parseCategories(input) {
+      self.options.categories = input.split(',');
+    }
   },
 
   writing: function () {
@@ -55,7 +57,6 @@ module.exports = yeoman.Base.extend({
       'controller.js',
       'README.md',
       'config.json',
-      'bower.json',
       'package.json',
       'locale/en_US.json',
       'locale/es_ES.json',
@@ -63,7 +64,8 @@ module.exports = yeoman.Base.extend({
       'gulp-tasks/integration.js',
       'docs/jsdoc.md',
       'docs/en_US.md',
-      'docs/es_ES.md'
+      'docs/es_ES.md',
+      'bower.json'
     ];
 
     var originalFiles = [
@@ -73,17 +75,23 @@ module.exports = yeoman.Base.extend({
       'gulp-tasks/documentation.js',
       'gulp-tasks/lint.js',
       'gulp-tasks/testing.js',
-      'docs/jsdoc.json',
-      '.bowerrc'
+      'docs/jsdoc.json'
     ];
 
-    templatedFiles.forEach(function(id) {
+    templatedFiles.forEach(function (id) {
       tools.copy(_self, 'copyTpl', id, id, moduleInput);
     });
 
-    originalFiles.forEach(function(id) {
+    originalFiles.forEach(function (id) {
       tools.copy(_self, 'copy', id, id);
     });
+
+    this.fs.copy(
+      this.templatePath('_bowerrc'),
+      this.destinationPath('.bowerrc')
+    );
+
+    // tools.copy(_self, 'copyTpl', 'bower.json', 'bower.json', moduleInput);
 
     this.directory(
       this.templatePath('images'),

@@ -7,7 +7,8 @@
   },
   "scripts": {
     "test": "gulp e2e",
-    "start": "gulp"
+    "start": "gulp",
+    "versioncheck": "gulp versioncheck"
   },
   "devDependencies": {
     "del": "^2.2.2",
@@ -30,7 +31,11 @@
     "gulp-watch": "^4.3.10",
     "jsesc": "^2.2.0",
     "protractor": "^2.0.0"
+    "gutil-color-log": "^1.0.2",
   },
+  "pre-commit": [
+    "versioncheck"
+  ],
   "author": "<%- userName %>",
   "license": "<%- license %>",
   "keywords": ["koapp", "koapp module", "king of app"]

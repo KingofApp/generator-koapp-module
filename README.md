@@ -1,6 +1,6 @@
 # generator-koapp-module
 
-![Koa-logo](http://kingofapp.es/wp-content/uploads/2015/02/logoking-r1.png)
+![Koa-logo](https://s3-eu-west-1.amazonaws.com/images.kingofapp.com/logo/logo%2Bking%403x.png)
 
 > Scaffold out a King of App Module
 

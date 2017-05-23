@@ -1,38 +1,37 @@
 'use strict';
 
-var fs = require('fs'),
-  gulp = require('gulp'),
-  exec = require('child_process').exec,
-  spawn = require('child_process').spawn,
-  gutil = require('gulp-util'),
-  protractor = require('gulp-protractor').protractor,
-  notify = require('gulp-notify'),
-  gulpif = require('gulp-if'),
-  desktopNotifications = false;
+var fs = require('fs');
+var gulp = require('gulp');
+var spawn = require('child_process').spawn;
+var gutil = require('gulp-util');
+var protractor = require('gulp-protractor').protractor;
+var notify = require('gulp-notify');
+var gulpif = require('gulp-if');
+var shell = require('shelljs');
+var desktopNotifications = false;
 
 try {
   desktopNotifications = require('../../../../config').features.desktopNotifications;
-}
-catch(e){}
+} catch(e) {}
 
 
 var wdmInstalled = false;
 
 gulp.task('protractor-validation', function(cb) {
-  exec('npm list -g webdriver-manager -json', function(err, stdout) {
-      var input = JSON.parse(stdout);
+  shell.exec('npm list -g webdriver-manager -json', function(err, stdout) {
+      var input = Object.keys(stdout).length ? JSON.parse(stdout) : {};
 
-      if (input.dependencies['webdriver-manager']) {
+      if (Object.keys(input).length && input.dependencies['webdriver-manager']) {
         wdmInstalled = true;
       }
 
-    cb(err);
+      cb(err.message);
   });
-})
+});
 
 gulp.task('protractor-update', ['protractor-validation'], function(cb) {
   if (wdmInstalled) {
-    exec('webdriver-manager update', function(err, stdout, stderr) {
+    shell.exec('webdriver-manager update', function(err, stdout, stderr) {
         gutil.log(stdout);
         gutil.log(stderr);
     });
@@ -70,7 +69,7 @@ gulp.task('protractor-test', ['protractor-launch'], function(done) {
         done();
       });
   } else {
-    done()
+    done();
   }
 
 });

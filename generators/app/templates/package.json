@@ -34,7 +34,8 @@
     "gutil-color-log": "^1.0.2",
     "protractor": "^2.5.1",
     "selenium": "^2.20.0",
-    "shelljs": "^0.7.7"
+    "shelljs": "^0.7.7",
+    "pre-commit": "^1.1.2"
   },
   "pre-commit": [
     "versioncheck"
